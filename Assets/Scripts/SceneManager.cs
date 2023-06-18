@@ -91,7 +91,6 @@ public class SceneManager : MonoBehaviour
                 clickPosition = hit.point;
                 if (clickedTile.CompareTag("Tile")){
                     Debug.Log(clickedTile);
-                    // Debug.Log(clickPosition);
                     
                     if(isValidMoves(clickedTile.GetComponent<TileData>(), turn)){
                         putStone(clickedTile, turn);
@@ -164,11 +163,6 @@ public class SceneManager : MonoBehaviour
             turnText.text = "WHITE TURN";
         }
     }
-
-    // private void OnGUI(){
-    //     Rect subScreenRect = new Rect(Screen.width - (subCamera.pixelWidth * 1.1f), 10f, subCamera.pixelWidth, subCamera.pixelHeight);
-    //     GUI.DrawTexture(subScreenRect, subCamera.targetTexture, ScaleMode.ScaleToFit, false);
-    // }
 
     private void putStone(GameObject targetTile, int currentTurn)
     {

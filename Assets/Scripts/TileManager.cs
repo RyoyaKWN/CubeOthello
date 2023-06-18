@@ -33,15 +33,4 @@ public class TileManager : MonoBehaviour
             }
         }
     }
-
-    public TileData getTileData(int i){
-        TileData targetTileData = tiles[i].GetComponent<TileData>();
-        return targetTileData;
-    }
-
-    public int getTileNum(int face, int row, int col){
-        int tileNum = 0;
-        tileNum = face * 16 + row * 4 + col + 1;
-        return tileNum;
-    }
 }

@@ -23,19 +23,6 @@ public class ColList : MonoBehaviour
     public CircArray<TileData> z4;
 
     //----- 斜め（角あり） -----//
-    public CircArray<TileData> to1;
-    public CircArray<TileData> to2;
-    public CircArray<TileData> bo1;
-    public CircArray<TileData> bo2;
-    public CircArray<TileData> ri1;
-    public CircArray<TileData> ri2;
-    public CircArray<TileData> le1;
-    public CircArray<TileData> le2;
-    public CircArray<TileData> fr1;
-    public CircArray<TileData> fr2;
-    public CircArray<TileData> ba1;
-    public CircArray<TileData> ba2;
-
     public CircArray<TileData> tb1;
     public CircArray<TileData> tb2;
     public CircArray<TileData> rl1;
@@ -57,10 +44,7 @@ public class ColList : MonoBehaviour
     public CircArray<TileData> r5;
     public CircArray<TileData> r6;
 
-    // void x1()
-    // {
-        
-    // }
+    
     void Start()
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
@@ -526,43 +510,5 @@ public class ColList : MonoBehaviour
 
         //----- 列情報をまとめたリスト -----//
         colList = new List<CircArray<TileData>>() {x1, x2, x3, x4, y1, y2, y3, y4, z1, z2, z3, z4, tb1, tb2, rl1, rl2, fb1, fb2, n1, n2, n3, n4, n5, n6, r1, r2, r3, r4, r5, r6};
-    }
-
-    public TileData CircularArrayInc (TileData[] tiles, TileData targetTile)
-    {
-        int i = 0;
-        while(tiles[i] != targetTile)
-        {
-            i++;
-        }
-
-        if(i == tiles.Length-1)
-        {
-            i = 0;
-        }else
-        {
-            i+= 1;
-        }
-
-        return tiles[i];
-    }
-
-    public TileData CircularArrayDec (TileData[] tiles, TileData targetTile)
-    {
-        int i = 0;
-        while(tiles[i] != targetTile)
-        {
-            i++;
-        }
-
-        if(i == 0)
-        {
-            i = tiles.Length - 1;
-        }else
-        {
-            i-= 1;
-        }
-
-        return tiles[i];
     }
 }
