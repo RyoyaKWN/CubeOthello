@@ -15,10 +15,10 @@ public class SceneManager : MonoBehaviour
     public TextMeshProUGUI countBlackText;
     public TextMeshProUGUI countWhiteText;
     public TextMeshProUGUI gameResult;
+    private TileManager tileManager;
 
-    public Vector2 rotationSpeed = new Vector2(0.4f, 0.4f);
-    public bool reverse;
-    public float zoomSpeed = 1;
+    public float rotationSpeed = 100.0f;
+    private Vector3 lastMousePosition;
 
     private int turn = 1;
     private int countBlack;
@@ -26,8 +26,7 @@ public class SceneManager : MonoBehaviour
     private List<TileData> tileDatas;
 
     private Camera mainCamera;
-    private Vector2 lastMousePosition;
-    private TileManager tileManager;
+    // private Vector2 lastMousePosition;
 
     void Start()
     {
@@ -119,7 +118,6 @@ public class SceneManager : MonoBehaviour
                 }
             }else{
                 clickedTile = null;
-                lastMousePosition = Input.mousePosition;
             }
  
         }
@@ -128,30 +126,11 @@ public class SceneManager : MonoBehaviour
         {
             if (clickedTile == null)
             {
-                if (!reverse)
-                {
-                    var x = (Input.mousePosition.y - lastMousePosition.y);
-                    var y = (lastMousePosition.x - Input.mousePosition.x);
+                float rotX = Input.GetAxis("Mouse X") * rotationSpeed * Mathf.Deg2Rad * 5;
+                float rotY = Input.GetAxis("Mouse Y") * rotationSpeed * Mathf.Deg2Rad * 5;
 
-                    var newAngle = Vector3.zero;
-                    newAngle.x = x * rotationSpeed.x;
-                    newAngle.y = y * rotationSpeed.y;
-
-                    targetObject.transform.Rotate(newAngle);
-                    lastMousePosition = Input.mousePosition;
-                }
-                else
-                {
-                    var x = (lastMousePosition.y - Input.mousePosition.y);
-                    var y = (Input.mousePosition.x - lastMousePosition.x);
-
-                    var newAngle = Vector3.zero;
-                    newAngle.x = x * rotationSpeed.x;
-                    newAngle.y = y * rotationSpeed.y;
-
-                    targetObject.transform.Rotate(newAngle);
-                    lastMousePosition = Input.mousePosition;
-                }
+                targetObject.transform.Rotate(Camera.main.transform.up, -rotX, Space.World);
+                targetObject.transform.Rotate(Camera.main.transform.right, rotY, Space.World);
             }
         }
 

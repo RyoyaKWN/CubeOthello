@@ -23,12 +23,18 @@ public class ColList : MonoBehaviour
     public CircArray<TileData> z4;
 
     //----- 斜め（角あり） -----//
-    public CircArray<TileData> tb1;
-    public CircArray<TileData> tb2;
-    public CircArray<TileData> rl1;
-    public CircArray<TileData> rl2;
-    public CircArray<TileData> fb1;
-    public CircArray<TileData> fb2;
+    public CircArray<TileData> to1;
+    public CircArray<TileData> to2;
+    public CircArray<TileData> bo1;
+    public CircArray<TileData> bo2;
+    public CircArray<TileData> ri1;
+    public CircArray<TileData> ri2;
+    public CircArray<TileData> le1;
+    public CircArray<TileData> le2;
+    public CircArray<TileData> fr1;
+    public CircArray<TileData> fr2;
+    public CircArray<TileData> ba1;
+    public CircArray<TileData> ba2;
 
     //----- 斜め（角なし） -----//
     public CircArray<TileData> n1;
@@ -272,70 +278,100 @@ public class ColList : MonoBehaviour
         });
 
         //----- 斜め（角あり） -----//
-        tb1 = new CircArray<TileData>(new TileData[] {
+        to1 = new CircArray<TileData>(new TileData[] {
             tileDatas[0],
             tileDatas[5],
             tileDatas[10],
             tileDatas[15],
-            tileDatas[16],
-            tileDatas[21],
-            tileDatas[26],
-            tileDatas[31]
+            tileDatas[96]
         });
 
-        tb2 = new CircArray<TileData>(new TileData[] {
+        to2 = new CircArray<TileData>(new TileData[] {
             tileDatas[3],
             tileDatas[6],
             tileDatas[9],
             tileDatas[12],
+            tileDatas[96]
+        });
+
+        bo1 = new CircArray<TileData>(new TileData[] {
+            tileDatas[16],
+            tileDatas[21],
+            tileDatas[26],
+            tileDatas[31],
+            tileDatas[96]
+        });
+
+        bo2 = new CircArray<TileData>(new TileData[] {
             tileDatas[19],
             tileDatas[22],
             tileDatas[25],
-            tileDatas[28]
+            tileDatas[28],
+            tileDatas[96]
         });
 
-        rl1 = new CircArray<TileData>(new TileData[] {
+        ri1 = new CircArray<TileData>(new TileData[] {
             tileDatas[32],
             tileDatas[37],
             tileDatas[42],
             tileDatas[47],
-            tileDatas[48],
-            tileDatas[53],
-            tileDatas[58],
-            tileDatas[63]
+            tileDatas[96]
         });
 
-        rl2 = new CircArray<TileData>(new TileData[] {
+        ri2 = new CircArray<TileData>(new TileData[] {
             tileDatas[35],
             tileDatas[38],
             tileDatas[41],
             tileDatas[44],
+            tileDatas[96]
+        });
+
+        le1 = new CircArray<TileData>(new TileData[] {
+            tileDatas[48],
+            tileDatas[53],
+            tileDatas[58],
+            tileDatas[63],
+            tileDatas[96]
+        });
+
+        le2 = new CircArray<TileData>(new TileData[] {
             tileDatas[60],
             tileDatas[57],
             tileDatas[54],
             tileDatas[51],
+            tileDatas[96]
         });
 
-        fb1 = new CircArray<TileData>(new TileData[] {
+        fr1 = new CircArray<TileData>(new TileData[] {
             tileDatas[64],
             tileDatas[69],
             tileDatas[74],
             tileDatas[79],
-            tileDatas[80],
-            tileDatas[85],
-            tileDatas[90],
-            tileDatas[95]
+            tileDatas[96]
         });
 
-        fb2 = new CircArray<TileData>(new TileData[] {
+        fr2 = new CircArray<TileData>(new TileData[] {
             tileDatas[67],
             tileDatas[70],
             tileDatas[73],
             tileDatas[76],
+            tileDatas[96]
+        }); 
+        
+        ba1 = new CircArray<TileData>(new TileData[] {
+            tileDatas[80],
+            tileDatas[85],
+            tileDatas[90],
+            tileDatas[95],
+            tileDatas[96]
+        });
+        
+        ba2 = new CircArray<TileData>(new TileData[] {
             tileDatas[92],
             tileDatas[89],
             tileDatas[86],
             tileDatas[83],
+            tileDatas[96]
         }); 
 
         //----- 斜め（角なし） -----//
@@ -509,6 +545,6 @@ public class ColList : MonoBehaviour
         });
 
         //----- 列情報をまとめたリスト -----//
-        colList = new List<CircArray<TileData>>() {x1, x2, x3, x4, y1, y2, y3, y4, z1, z2, z3, z4, tb1, tb2, rl1, rl2, fb1, fb2, n1, n2, n3, n4, n5, n6, r1, r2, r3, r4, r5, r6};
+        colList = new List<CircArray<TileData>>() {x1, x2, x3, x4, y1, y2, y3, y4, z1, z2, z3, z4, to1, to2, bo1, bo2, ri1, ri2, le1, le2, fr1, fr2, ba1, ba2, n1, n2, n3, n4, n5, n6, r1, r2, r3, r4, r5, r6};
     }
 }

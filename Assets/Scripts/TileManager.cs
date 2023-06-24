@@ -20,17 +20,20 @@ public class TileManager : MonoBehaviour
             {
                 for (int col = 0; col < 4; col++)
                 {
-                    // tiles[i].AddComponent<DrawBorder>();
                     TileData tileData = tiles[i].AddComponent<TileData>();
                     tileData.face = (Face)Enum.ToObject(typeof(Face), face);
                     tileData.row = row;
                     tileData.col = col;
                     tileData.state = 0;
-                    tileData.isSet = false;
                     tileDatas[i] = tileData;
                     i++;
                 }
             }
         }
+
+        // NULL_Tileの設定
+        TileData nullTileData = tiles[tiles.Length - 1].AddComponent<TileData>();
+        nullTileData.state = 0;
+        tileDatas[tiles.Length - 1] = nullTileData;
     }
 }

@@ -18,6 +18,5 @@ public class TileData : MonoBehaviour
     public int row; //行番号
     public int col; //列番号
     public int state; //状態 0:空, -1:白, 1:黒
-    public bool isSet; //石が置けるかどうかの判定
     public TileData[,] nextTiles;
 }
