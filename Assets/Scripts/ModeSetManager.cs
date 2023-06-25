@@ -26,15 +26,6 @@ public class ModeSetManager : MonoBehaviour
         //モードに対応する値を取得
         modeData.selectedMode = modeValues[selectedIndex];
 
-        // GameManagerスクリプトがアタッチされたオブジェクトを検索
-        // GameManager gameManager = FindObjectOfType<GameManager>();
-
-        // // オブジェクトが見つかった場合、モード選択結果を格納する変数を更新
-        // if (gameManager != null)
-        // {
-        //     gameManager.CPUTurn = selectedMode;
-        // }
-
         // シーンを移動
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
     }

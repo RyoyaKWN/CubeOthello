@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -20,12 +22,14 @@ public class GameManager : MonoBehaviour
     public float rotationSpeed = 100.0f;
     private Vector3 lastMousePosition;
 
-    private int turn = 1;
+    private int turn;
     private int countBlack;
     private int countWhite;
     private List<TileData> tileDatas;
 
     private Camera mainCamera;
+    public Button resetButton;
+    public Button returnButton;
 
     public ModeData modeData;
     public int CPUTurn;
@@ -42,15 +46,10 @@ public class GameManager : MonoBehaviour
             tileDatas.Add(tile.GetComponent<TileData>());
         }
         
-        putStone(GameObject.Find("Top2_2"), 1);
-        putStone(GameObject.Find("Top3_3"), 1);
-        putStone(GameObject.Find("Top2_3"), -1);
-        putStone(GameObject.Find("Top3_2"), -1);
-        foreach(TileData tile in getValidMoves(turn))
-        {
-            GameObject parentObject = tile.gameObject;
-            drawBorder(parentObject);
-        }
+        resetButton.onClick.AddListener(resetGame);
+        returnButton.onClick.AddListener(returnToModeSelect);
+
+        initialize();
 
         // CPUTurnの取得
         CPUTurn = modeData.selectedMode;
@@ -170,6 +169,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void initialize()
+    {
+        turn = 1;
+        putStone(GameObject.Find("Top2_2"), 1);
+        putStone(GameObject.Find("Top3_3"), 1);
+        putStone(GameObject.Find("Top2_3"), -1);
+        putStone(GameObject.Find("Top3_2"), -1);
+        foreach(TileData tile in getValidMoves(turn))
+        {
+            GameObject parentObject = tile.gameObject;
+            drawBorder(parentObject);
+        }
+    }
+
+    private void resetGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+    }
+
+    private void returnToModeSelect()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("ModeSelectScene");
+    }
+
     private void putStone(GameObject targetTile, int currentTurn)
     {
         TileData tileData = targetTile.GetComponent<TileData>();
@@ -184,18 +207,6 @@ public class GameManager : MonoBehaviour
             GameObject newObject = Instantiate(stoneWhite, spawnPosition, parentFace.rotation, targetTile.transform);
             tileData.state = -1;
         }
-    }
-
-    public void putStoneBlack(GameObject targetTile){
-        Transform face = targetTile.transform.parent;
-        Vector3 spawnPosition = targetTile.transform.position + new Vector3(0f, 0.5f, 0f);
-        GameObject newObject = Instantiate(stoneBlack, spawnPosition, face.rotation, targetTile.transform);    
-    }
-
-    public void putStoneWhite(GameObject targetTile){
-        Transform face = targetTile.transform.parent;
-        Vector3 spawnPosition = targetTile.transform.position + new Vector3(0f, 0.5f, 0f);
-        GameObject newObject = Instantiate(stoneWhite, spawnPosition, face.rotation, targetTile.transform);    
     }
 
     private void changeStone(GameObject targetTile)
