@@ -1,41 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
+using TMPro;
 
 public class ModeSetManager : MonoBehaviour
 {
-    [SerializeField]
-    public Button twoPlayerButton; // 2プレイヤーモードを選択するボタン
-    public Button playerVsCPUButton; // 1プレイヤー(先攻)+CPUモードを選択するボタン
-    public Button CPUVsPlayerButton; // 1プレイヤー(後攻)+CPUモードを選択するボタン
+    public TMP_Dropdown modeDropdown;
+    public Button startButton;
+
+    // public GameMode selectedMode;
+    private int[] modeValues = {0, -1, 1};
+    public ModeData modeData;
 
     private void Start()
     {
-        // ボタンにクリック時のイベントを追加
-        twoPlayerButton.onClick.AddListener(SelectTwoPlayersMode);
-        playerVsCPUButton.onClick.AddListener(SelectPlayerVsCPUMode);
-        CPUVsPlayerButton.onClick.AddListener(SelectCPUVsPlayerMode);
+        // スタートボタンのクリックイベントを設定
+        startButton.onClick.AddListener(StartGame);
     }
 
-    public void SelectTwoPlayersMode()
+    public void StartGame()
     {
-        // 2プレイヤーモードの処理を記述する
-        // 例: ゲームのシーンをロードして2人プレイ用のゲームを開始する
-        UnityEngine.SceneManagement.SceneManager.LoadScene("TwoPlayersScene");
-    }
+        // ドロップダウンで選択されたモードを取得
+        int selectedIndex = modeDropdown.value;
 
-    private void SelectPlayerVsCPUMode()
-    {
-        // 1プレイヤー(先攻)+CPUモードの処理を記述する
-        // SceneManager.LoadScene("PlayerVsCPUScene");
-    }
+        //モードに対応する値を取得
+        modeData.selectedMode = modeValues[selectedIndex];
 
-    private void SelectCPUVsPlayerMode()
-    {
-        // 1プレイヤー(後攻)+CPUモードの処理を記述する
-        // SceneManager.LoadScene("CPUVsPlayerScene");
+        // GameManagerスクリプトがアタッチされたオブジェクトを検索
+        // GameManager gameManager = FindObjectOfType<GameManager>();
+
+        // // オブジェクトが見つかった場合、モード選択結果を格納する変数を更新
+        // if (gameManager != null)
+        // {
+        //     gameManager.CPUTurn = selectedMode;
+        // }
+
+        // シーンを移動
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
     }
 }
