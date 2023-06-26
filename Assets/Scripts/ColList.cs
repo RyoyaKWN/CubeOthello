@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ColList : MonoBehaviour
 {
-    public GameObject[] tiles;
     public TileData[] tileDatas;
     public List<CircArray<TileData>> colList;
 
@@ -53,11 +52,7 @@ public class ColList : MonoBehaviour
     
     void Start()
     {
-        // tiles = GameObject.FindGameObjectsWithTag("Tile");
         tileDatas = FindObjectOfType<TileManager>().tileDatas;
-        // for (int i = 0; i < tiles.Length; i++){
-        //     tileDatas[i] = tiles[i].GetComponent<TileData>();
-        // }
 
         //----- 辺が隣接 -----//
         x1 = new CircArray<TileData>(new TileData[] {

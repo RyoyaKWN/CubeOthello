@@ -8,7 +8,6 @@ public class ModeSetManager : MonoBehaviour
     public TMP_Dropdown modeDropdown;
     public Button startButton;
 
-    // public GameMode selectedMode;
     private int[] modeValues = {0, -1, 1};
     public ModeData modeData;
 
