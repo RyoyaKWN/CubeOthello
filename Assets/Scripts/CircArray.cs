@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-
 public class CircArray<T> : IEnumerable<T>
 {
     private T[] array;
-    private int size;
+    public int size;
 
     public CircArray(/*int size*/ T[] elements)
     {
@@ -75,5 +74,17 @@ public class CircArray<T> : IEnumerable<T>
         public void Dispose()
         {
         }
+    }
+
+    public int IndexOf(T element)
+    {
+        for(int i = 0; i < size; i++)
+        {
+            if(EqualityComparer<T>.Default.Equals(array[GetCircularIndex(i)], element))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }

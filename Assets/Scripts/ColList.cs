@@ -53,11 +53,11 @@ public class ColList : MonoBehaviour
     
     void Start()
     {
-        tiles = GameObject.FindGameObjectsWithTag("Tile");
-        tileDatas = new TileData[tiles.Length];
-        for (int i = 0; i < tiles.Length; i++){
-            tileDatas[i] = tiles[i].GetComponent<TileData>();
-        }
+        // tiles = GameObject.FindGameObjectsWithTag("Tile");
+        tileDatas = FindObjectOfType<TileManager>().tileDatas;
+        // for (int i = 0; i < tiles.Length; i++){
+        //     tileDatas[i] = tiles[i].GetComponent<TileData>();
+        // }
 
         //----- 辺が隣接 -----//
         x1 = new CircArray<TileData>(new TileData[] {

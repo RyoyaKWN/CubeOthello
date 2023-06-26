@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,76 +12,51 @@ public class GameManager : MonoBehaviour
     public GameObject clickedTile;
     public GameObject stoneWhite;
     public GameObject stoneBlack;
+    public GameObject border;
     public TextMeshProUGUI turnText;
     public TextMeshProUGUI countBlackText;
     public TextMeshProUGUI countWhiteText;
     public TextMeshProUGUI gameResult;
-    private TileManager tileManager;
 
     public float rotationSpeed = 100.0f;
-    private Vector3 lastMousePosition;
 
     private int turn;
     private int countBlack;
     private int countWhite;
-    private List<TileData> tileDatas;
+    private TileData[] tileDatas;
 
     private Camera mainCamera;
     public Button resetButton;
     public Button returnButton;
 
     public ModeData modeData;
-    public int CPUTurn;
+    private int CPUTurn;
     private Coroutine CPUMoveCoroutine;
 
     void Start()
     {
         mainCamera = Camera.main;
-
-        GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
-        tileDatas = new List<TileData>();
-        foreach (GameObject tile in tiles)
-        {
-            tileDatas.Add(tile.GetComponent<TileData>());
-        }
+        tileDatas = FindObjectOfType<TileManager>().tileDatas;
         
         resetButton.onClick.AddListener(resetGame);
         returnButton.onClick.AddListener(returnToModeSelect);
 
-        initialize();
+        turn = 1;
+        putStone(GameObject.Find("Top2_2"), 1);
+        putStone(GameObject.Find("Top3_3"), 1);
+        putStone(GameObject.Find("Top2_3"), -1);
+        putStone(GameObject.Find("Top3_2"), -1);
+        foreach(TileData tile in getValidMoves(turn))
+        {
+            GameObject parentObject = tile.gameObject;
+            drawBorder(parentObject);
+        }
 
         // CPUTurnの取得
         CPUTurn = modeData.selectedMode;
-
         if(CPUTurn == 1){
             CPUMoveCoroutine = StartCoroutine(PerformCPUMove());
         }
-
-        //---------- 列の確認 ----------//
-        // foreach (TileData tile in FindObjectOfType<ColList>().r6)
-        // {
-        //     drawBorder(tile.gameObject);
-        // }
-
-        // List<CircArray<TileData>> targetList = new List<CircArray<TileData>>();
-        // foreach (CircArray<TileData> tiles in FindObjectOfType<ColList>().colList)
-        // {
-        //     foreach (TileData tile in tiles)
-        //     {
-        //         if(tile == GameObject.Find("Back4_2").GetComponent<TileData>())
-        //         {
-        //             targetList.Add(tiles);
-        //         }
-        //     }
-        // }
-
-        // foreach (CircArray<TileData> tiles in targetList)
-        // {
-        //     foreach (TileData tile in tiles)
-        //     {
-        //         drawBorder(tile.gameObject);
-        //     }
-        // }
     }
 
     void Update()
@@ -105,14 +81,13 @@ public class GameManager : MonoBehaviour
                         putStone(clickedTile, turn);
                         flip(clickedTile.GetComponent<TileData>(), turn);
 
-
                         countStone();
                         GameObject[] borders = GameObject.FindGameObjectsWithTag("Border");
                         foreach(GameObject border in borders){
                             Destroy(border);
                         }
 
-                        if(isGameOver()){ //勝敗判定
+                        if(getValidMoves(turn).Count == 0 && getValidMoves(-turn).Count == 0){ //勝敗判定
                             result();
                         }
                         else if(getValidMoves(-turn).Count > 0 && -turn == CPUTurn){
@@ -125,17 +100,6 @@ public class GameManager : MonoBehaviour
                         else{
                             changeTurn();
                         }
-                        
-                        //----- 石を置けるマスを再描画 -----//
-                        // GameObject[] borders = GameObject.FindGameObjectsWithTag("Border");
-                        // foreach(GameObject border in borders){
-                        //     Destroy(border);
-                        // }
-                        // foreach(TileData tile in getValidMoves(turn))
-                        // {
-                        //     GameObject parentObject = tile.gameObject;
-                        //     drawBorder(parentObject);
-                        // }
                     }
                 }
             }else{
@@ -166,20 +130,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void initialize()
-    {
-        turn = 1;
-        putStone(GameObject.Find("Top2_2"), 1);
-        putStone(GameObject.Find("Top3_3"), 1);
-        putStone(GameObject.Find("Top2_3"), -1);
-        putStone(GameObject.Find("Top3_2"), -1);
-        foreach(TileData tile in getValidMoves(turn))
-        {
-            GameObject parentObject = tile.gameObject;
-            drawBorder(parentObject);
-        }
-    }
-
     private void resetGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
@@ -193,15 +143,14 @@ public class GameManager : MonoBehaviour
     private void putStone(GameObject targetTile, int currentTurn)
     {
         TileData tileData = targetTile.GetComponent<TileData>();
-        Transform parentFace = targetTile.transform.parent;
 
         if (currentTurn == 1){
             Vector3 spawnPosition = targetTile.transform.position + new Vector3(0f, 0.5f, 0f);
-            GameObject newObject = Instantiate(stoneBlack, spawnPosition, parentFace.rotation, targetTile.transform);
+            GameObject newObject = Instantiate(stoneBlack, spawnPosition, targetTile.transform.rotation, targetTile.transform);
             tileData.state = 1;
         }else{
             Vector3 spawnPosition = targetTile.transform.position + new Vector3(0f, 0.5f, 0f);
-            GameObject newObject = Instantiate(stoneWhite, spawnPosition, parentFace.rotation, targetTile.transform);
+            GameObject newObject = Instantiate(stoneWhite, spawnPosition, targetTile.transform.rotation, targetTile.transform);
             tileData.state = -1;
         }
     }
@@ -227,7 +176,7 @@ public class GameManager : MonoBehaviour
 
     private void drawBorder(GameObject tile)
     {
-        GameObject borderObject = Instantiate((GameObject)Resources.Load("Prefabs/Border"), tile.transform);
+        GameObject borderObject = Instantiate(border, tile.transform);
     }
 
     //----- 指定のタイルが含まれる列のList生成 -----//
@@ -247,34 +196,36 @@ public class GameManager : MonoBehaviour
         return colList;
     }
 
-    //----- 指定の空白マスに指定の色の石が置けるか -----//
     private bool isValidMoves(TileData targetTile, int currentTurn)
     {
-        if(targetTile.state != 0){
+        if (targetTile.state != 0)
+        {
             return false;
         }
+
         List<CircArray<TileData>> colList = colListOfTile(targetTile);
-        foreach(CircArray<TileData> tiles in colList)
+        foreach (CircArray<TileData> tiles in colList)
         {
-            int i = 0;
-            while(tiles[i] != targetTile){
-                i++;
+            int i = tiles.TakeWhile(tile => tile != targetTile).Count();
+            if (i == tiles.size - 1)
+            {
+                continue;
             }
             int di = 1;
-            while(tiles[i+di].state == -currentTurn)
+            while (tiles[i + di].state == -currentTurn)
             {
                 di++;
             }
-            if(di > 1 && tiles[i+di].state == currentTurn)
+            if (di > 1 && tiles[i + di].state == currentTurn)
             {
                 return true;
             }
             di = 1;
-            while( tiles[i-di].state == -currentTurn)
+            while (tiles[i - di].state == -currentTurn)
             {
                 di++;
             }
-            if(di > 1 && tiles[i-di].state == currentTurn)
+            if (di > 1 && tiles[i - di].state == currentTurn)
             {
                 return true;
             }
@@ -282,6 +233,7 @@ public class GameManager : MonoBehaviour
 
         return false;
     }
+
 
     private List<TileData> getValidMoves(int currentTurn)
     {
@@ -302,6 +254,8 @@ public class GameManager : MonoBehaviour
 
         return validMoves;
     }
+
+    
 
     private void flip(TileData targetTile, int currentTurn)
     {
@@ -350,7 +304,7 @@ public class GameManager : MonoBehaviour
     private void countStone(){
         countBlack = 0;
         countWhite = 0;
-        for(int i = 0; i < tileDatas.Count; i++)
+        for(int i = 0; i < tileDatas.Length; i++)
         {
             if(tileDatas[i].state == 1){
                 countBlack++;
@@ -364,15 +318,7 @@ public class GameManager : MonoBehaviour
         countWhiteText.text = "WHITE : " + countWhite;
     }
 
-    private bool isGameOver(){
-        if(getValidMoves(turn).Count == 0 && getValidMoves(-turn).Count == 0){
-            return true;
-        }
-        return false;
-    }
-
     private void result(){
-        countStone();
         gameResult.faceColor = new Color(255,255,0,1);
         if(countBlack > countWhite){
             gameResult.text = "BLACK WINS!";
@@ -401,3 +347,5 @@ public class GameManager : MonoBehaviour
         changeTurn();
     }
 }
+
+
