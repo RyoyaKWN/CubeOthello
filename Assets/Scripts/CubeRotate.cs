@@ -8,7 +8,7 @@ public class CubeRotate : MonoBehaviour
     [SerializeField] private float _angleSpeed = 20;
 
     // 回転軸
-    [SerializeField] private Vector3 _axis = Vector3.forward;
+    [SerializeField] private Vector3 _axis = Vector3.up;
 
     private Transform _transform;
 

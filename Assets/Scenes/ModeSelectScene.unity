@@ -3238,7 +3238,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 120}
+  m_SizeDelta: {x: 740, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &443183207
 MonoBehaviour:
@@ -7476,7 +7476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -9125,7 +9125,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 100, y: -150}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179176118
 MonoBehaviour:
@@ -10773,7 +10773,6 @@ GameObject:
   - component: {fileID: 1553962267}
   - component: {fileID: 1553962266}
   - component: {fileID: 1553962265}
-  - component: {fileID: 1553962264}
   m_Layer: 0
   m_Name: Top1_1
   m_TagString: Tile
@@ -10797,22 +10796,6 @@ Transform:
   m_Father: {fileID: 45190433}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1553962264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553962262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9276368f6f868cc44871719e7fc86f2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  face: 0
-  row: 0
-  col: 0
-  state: 0
 --- !u!64 &1553962265
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11447,7 +11430,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1622338996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 173a17e281d9f164cbd663387f910ac2, type: 3}
+  m_Script: {fileID: 11500000, guid: b3395d0d3806d104485d54369743d83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _angleSpeed: 20
@@ -13333,7 +13316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' Start'
+  m_text: Start
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14265,7 +14248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: -150}
+  m_AnchoredPosition: {x: -50, y: -150}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1988198685

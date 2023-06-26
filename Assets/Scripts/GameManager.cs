@@ -7,8 +7,6 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public Camera subCamera;
-    public float subScreenSize = 0.2f;
     public GameObject targetObject;
     public GameObject clickedTile;
     public GameObject stoneWhite;
@@ -87,11 +85,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // if(turn == CPUTurn && getValidMoves(CPUTurn).Count > 0){
-        //     Debug.Log("hello");
-        //     // CPUMoveCoroutine = StartCoroutine(PerformCPUMove());
-        // }
-
         if (Input.GetMouseButtonDown(0)) {
             clickedTile = null;
             Vector3 clickPosition;
@@ -125,7 +118,11 @@ public class GameManager : MonoBehaviour
                         else if(getValidMoves(-turn).Count > 0 && -turn == CPUTurn){
                             changeTurn();
                             CPUMoveCoroutine = StartCoroutine(PerformCPUMove());
-                        }else{
+                        }else if(getValidMoves(-turn).Count == 0){
+                            changeTurn();    
+                            changeTurn();    
+                        }
+                        else{
                             changeTurn();
                         }
                         

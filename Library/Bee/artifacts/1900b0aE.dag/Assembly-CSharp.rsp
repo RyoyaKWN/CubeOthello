@@ -356,7 +356,6 @@
 "Assets/Scripts/ModeSetManager.cs"
 "Assets/Scripts/TileData.cs"
 "Assets/Scripts/TileManager.cs"
-"Assets/Scripts/Tiles/Top1_1.cs"
 -langversion:9.0
 
 /deterministic
