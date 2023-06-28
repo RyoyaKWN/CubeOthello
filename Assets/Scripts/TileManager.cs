@@ -9,6 +9,7 @@ public class TileManager : MonoBehaviour
     
     void Start()
     {
+        // 各マスにTileDataコンポーネントをアタッチ
         Transform parent = GameObject.Find("Cube").transform;
         tileDatas = new TileData[parent.childCount];
         int index = 0;

@@ -99,29 +99,29 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1582}
+      Script: {instanceID: 1588}
     - Class: 114
-      Script: {instanceID: 2560}
+      Script: {instanceID: 2566}
     - Class: 114
-      Script: {instanceID: 2760}
+      Script: {instanceID: 2766}
     - Class: 114
-      Script: {instanceID: 3032}
+      Script: {instanceID: 3038}
     - Class: 114
-      Script: {instanceID: 4176}
+      Script: {instanceID: 4182}
     - Class: 114
-      Script: {instanceID: 4932}
+      Script: {instanceID: 4938}
     - Class: 114
-      Script: {instanceID: 5352}
+      Script: {instanceID: 5358}
     - Class: 114
-      Script: {instanceID: 5468}
+      Script: {instanceID: 5474}
     - Class: 114
-      Script: {instanceID: 5614}
+      Script: {instanceID: 5620}
     - Class: 114
-      Script: {instanceID: 5868}
+      Script: {instanceID: 5874}
     - Class: 114
-      Script: {instanceID: 5924}
+      Script: {instanceID: 5930}
     - Class: 114
-      Script: {instanceID: 6124}
+      Script: {instanceID: 6130}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -174,43 +174,43 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1582}
+      Script: {instanceID: 1588}
     - Class: 114
-      Script: {instanceID: 2150}
-    - Class: 114
-      Script: {instanceID: 2560}
+      Script: {instanceID: 2156}
     - Class: 114
       Script: {instanceID: 2566}
     - Class: 114
-      Script: {instanceID: 2760}
+      Script: {instanceID: 2572}
     - Class: 114
-      Script: {instanceID: 3032}
+      Script: {instanceID: 2766}
     - Class: 114
-      Script: {instanceID: 3782}
+      Script: {instanceID: 3038}
     - Class: 114
-      Script: {instanceID: 4010}
+      Script: {instanceID: 3788}
     - Class: 114
-      Script: {instanceID: 4258}
+      Script: {instanceID: 4016}
     - Class: 114
-      Script: {instanceID: 4812}
+      Script: {instanceID: 4264}
     - Class: 114
-      Script: {instanceID: 4932}
+      Script: {instanceID: 4818}
     - Class: 114
-      Script: {instanceID: 5468}
+      Script: {instanceID: 4938}
     - Class: 114
-      Script: {instanceID: 5536}
+      Script: {instanceID: 5474}
     - Class: 114
-      Script: {instanceID: 5614}
+      Script: {instanceID: 5542}
     - Class: 114
-      Script: {instanceID: 5868}
+      Script: {instanceID: 5620}
     - Class: 114
-      Script: {instanceID: 5924}
+      Script: {instanceID: 5874}
     - Class: 114
-      Script: {instanceID: 5932}
+      Script: {instanceID: 5930}
     - Class: 114
-      Script: {instanceID: 6234}
+      Script: {instanceID: 5938}
     - Class: 114
-      Script: {instanceID: 6948}
+      Script: {instanceID: 6240}
+    - Class: 114
+      Script: {instanceID: 6954}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -862,7 +862,7 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 495c621e132685f34c431384724582bb
+      Hash: 415545af3e1d9253d1ff98333166637e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager

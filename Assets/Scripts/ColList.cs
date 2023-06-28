@@ -21,7 +21,7 @@ public class ColList : MonoBehaviour
     public CircArray<TileData> z3;
     public CircArray<TileData> z4;
 
-    //----- 斜め（角あり） -----//
+    //----- 斜め（角あり）...各面の角のマス -----//
     public CircArray<TileData> to1;
     public CircArray<TileData> to2;
     public CircArray<TileData> bo1;

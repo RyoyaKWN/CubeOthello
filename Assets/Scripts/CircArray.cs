@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+// コレクションのインデックスを循環させる
 public class CircArray<T> : IEnumerable<T>
 {
     private T[] array;
